@@ -25,6 +25,8 @@ public class TurretModBlockListener implements Listener{
 		Player player = e.getPlayer();
 		Block sign = e.getBlock();
 		if(text.startsWith("tm Turret")){
+		 if(!parent.Turretexists(sign.getLocation()))
+		 {
 			if (text.equalsIgnoreCase("tm TurretPistol"))
 			{
 				if(checkifturret(sign,sign.getWorld(),player, TurretType.PISTOL)){
@@ -50,6 +52,11 @@ public class TurretModBlockListener implements Listener{
 				parent.log.info("SMG turret created by " + player);
 			}
 		}
+		}
+		 else{
+			 sign.breakNaturally();
+			 player.sendMessage("turret is already there!");
+		 }
 		}
 		else if(parent.Turretexists(sign.getLocation())){
 			if(!text.startsWith("tmTurret"))
